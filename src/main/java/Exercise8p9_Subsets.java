@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Exercise8p9_Subsets {
     public static void main(String[] args) {
@@ -12,80 +11,52 @@ public class Exercise8p9_Subsets {
         findClosestSubSet(new int[]{1,2,3,4,5,6,7,8});
         findClosestSubSet(new int[]{1,2,3,10,11,20,33,43,123});
         findClosestSubSet(new int[]{1,2,3,23,11,20,33,43,123,5,6,7});
+        findClosestSubSet(new int[]{1,2,3,23,11,20,33,43,123,5,6,7});
+        findClosestSubSet(new int[]{4,1,100,23,11,20,33,43,123,7});
     }
 
     private static void findClosestSubSet(int[] input) {
-        List<int[]> subsets = getSubSet(input);
+        List<List<Integer>> subsets = getSubSet(input);
 
         System.out.print("closest: ");
 
-        int[] closest = subsets
+        List<Integer> closest = subsets
                 .stream()
-                .sorted(Comparator.comparingInt(x -> Math.abs(10 - Arrays.stream(x).sum())))
+                .sorted(Comparator.comparingInt(x -> Math.abs(10 - x.stream().mapToInt(y -> y).sum())))
                 .findFirst()
                 .get();
-        printSet(closest);
+        System.out.print(closest.stream().mapToInt(y -> y).sum());
+        System.out.print(" ");
+        System.out.println(printSet(closest));
     }
 
-    private static void printSet(int[] subset) {
-        System.out.print("[");
+    private static String printSet(List<Integer> subset) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
         for (int i : subset) {
-            System.out.print(i + ", ");
+            sb.append(i);
+            sb.append(" ,");
         }
-        System.out.println("]");
-
+        sb.deleteCharAt(sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        return sb.toString();
     }
 
-    private static List<int[]> getSubSet(int[] elements) {
-        List<int[]> subsets = new ArrayList<>();
-        for (int i = 0; i < elements.length; i++) {
-            subsets.add(new int[]{elements[i]});
-        }
+    private static List<List<Integer>> getSubSet(int[] elements) {
+        List<List<Integer>> allSubsets = new ArrayList<>();
+        double pow = Math.pow(2, elements.length);
+        for (int i = 1; i <= pow - 1; i++) {
 
-        for (int i = 0; i < subsets.size(); i++) {
-            int[] currentSubSet = subsets.get(i);
-            List<Integer> elementsAsList = Arrays.stream(elements)
-                    .map(x -> (Integer) x)
-                    .boxed()
-                    .collect(Collectors.toList());
-
-            //remove all items already in subset
-            removeAll(elementsAsList, currentSubSet);
-
-            //create new subsets by adding one element
-
-            for (Integer element : elementsAsList){
-                List<Integer> currentSubSetAsList = toList(currentSubSet);
-                currentSubSetAsList.add(element);
-                int[] newSubSet = currentSubSetAsList.stream().mapToInt(x -> x).toArray();
-                if(!contains(subsets, newSubSet)) {
-                    subsets.add(newSubSet);
+            List<Integer> currentSubSet = new ArrayList<>();
+            for (int k = 0; k < elements.length; k++) {
+                if((i >> k) % 2 == 1) {
+                    currentSubSet.add(elements[k]);
                 }
             }
+            allSubsets.add(currentSubSet);
         }
-        return subsets;
-    }
 
-    private static boolean contains(List<int[]> subsets, int[] newSubSet) {
-        return subsets.stream().anyMatch(x -> areSame(newSubSet, x));
-    }
-
-    private static boolean areSame(int[] a, int[] b) {
-        List<Integer> aList = toList(a);
-        List<Integer> bList = toList(b);
-        for (Integer i : aList) {
-            if(!bList.remove(i)) {
-                return false;
-            }
-        }
-        return bList.size() == 0;
-    }
-
-    private static List<Integer> toList(int[] currentSubSet) {
-        return Arrays.stream(currentSubSet).boxed().collect(Collectors.toList());
-    }
-
-    private static void removeAll(List<Integer> elementsAsList, int[] currentSubSet) {
-        elementsAsList.removeAll(Arrays.stream(currentSubSet).boxed().collect(Collectors.toList()));
+        return allSubsets;
     }
 }
