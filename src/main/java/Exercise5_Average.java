@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Exercise5_Average {
     public static void main(String[] args) {
         System.out.println("average of 1, 3, 4 is " + average(new int[]{1, 3, 4}));
-        System.out.println("average of 1, 3, 4 is " + average2(new int[]{1, 3, 4}));
+        System.out.println("average of 1, 3, 4 is " + average2(1, 3, 4));
         System.out.println("average of 1, 3, 4 is " + averageWithStreams(new int[]{1, 3, 4}));
         System.out.println();
         System.out.println("OK, now gimme some numbers separated by spaces and I'll average them");
