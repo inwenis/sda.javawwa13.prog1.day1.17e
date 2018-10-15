@@ -1,14 +1,19 @@
+import java.math.BigInteger;
+
 public class Exercise11_Fibonacci {
     public static void main(String[] args) {
-        int current = 0;
-        int previous;
-        for (int i = 0; i < 100; i++) {
+        BigInteger current = BigInteger.ONE;
+        BigInteger previous;
+        for (int i = 0; i < 50; i++) {
             previous = current;
             current = fibonacci_iterative(i);
-            double ratio = (double) previous / current;
-            String format = String.format("|%3d|%20d|%10f|", i, current, ratio);
+            double ratio = previous.doubleValue() / current.doubleValue();
+            String format = String.format("|%4d|%100d|%23.20f|", i, current, ratio);
             System.out.println(format);
         }
+        // using int I can print 44 fibonacci numbers
+        // using long I can print 90 fibonacci numbers
+        // using BigInteger I printed 10000 fibonacci numbers and could probably print many more
     }
 
     public static int fibonacci(int i) {
@@ -21,18 +26,18 @@ public class Exercise11_Fibonacci {
         }
     }
 
-    public static int fibonacci_iterative(int i) {
+    public static BigInteger fibonacci_iterative(int i) {
         if (i == 0) {
-            return 1;
+            return BigInteger.ONE;
         } else if(i == 1) {
-            return 1;
+            return BigInteger.ONE;
         }
         else {
-            int a = 1;
-            int b = 1;
-            int temp;
+            BigInteger a = BigInteger.ONE;
+            BigInteger b = BigInteger.ONE;
+            BigInteger temp;
             for (int j = 0; j < i; j++) {
-                temp = a + b;
+                temp = a.add(b);
                 a = b;
                 b = temp;
             }
