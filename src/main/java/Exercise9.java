@@ -8,6 +8,7 @@ public class Exercise9 {
         System.out.println(asteriskSquare(3));
         System.out.println(asteriskSquare(4));
         System.out.println(asteriskSquare2(4));
+        System.out.println(asteriskSquare3(4));
     }
 
     public static String asteriskSquare(int length) {
@@ -51,5 +52,20 @@ public class Exercise9 {
             result += character;
         }
         return result;
+    }
+
+    // even better - StringBuilder is the preferred way of concatenating strings
+    public static String asteriskSquare3(int length) {
+        StringBuilder result = new StringBuilder();
+        result.append(repeat(length, "*"));
+        result.append("\n");
+        for (int i = 0; i < length - 2; i++) {
+            result.append("*");
+            result.append(repeat(length - 2, " "));
+            result.append("*");
+            result.append("\n");
+        }
+        result.append(repeat(length, "*"));
+        return result.toString();
     }
 }
