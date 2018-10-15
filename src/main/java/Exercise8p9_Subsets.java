@@ -16,7 +16,7 @@ public class Exercise8p9_Subsets {
     }
 
     private static void findClosestSubSet(int n, int[] input) {
-        List<List<Integer>> subsets = getSubSet(input);
+        List<List<Integer>> subsets = getPowerSet(input);
         List<Integer> closest = subsets
                 .stream()
                 .sorted(Comparator.comparingInt(x -> Math.abs(n - x.stream().mapToInt(y -> y).sum())))
@@ -40,10 +40,10 @@ public class Exercise8p9_Subsets {
         return sb.toString();
     }
 
-    private static List<List<Integer>> getSubSet(int[] elements) {
-        List<List<Integer>> allSubsets = new ArrayList<>();
-        double superSetCount = Math.pow(2, elements.length) - 1;
-        for (int i = 1; i <= superSetCount; i++) {
+    private static List<List<Integer>> getPowerSet(int[] elements) {
+        List<List<Integer>> powerSet = new ArrayList<>();
+        double powerSetCount = Math.pow(2, elements.length) - 1;
+        for (int i = 1; i <= powerSetCount; i++) {
 
             List<Integer> currentSubSet = new ArrayList<>();
             for (int k = 0; k < elements.length; k++) {
@@ -51,9 +51,9 @@ public class Exercise8p9_Subsets {
                     currentSubSet.add(elements[k]);
                 }
             }
-            allSubsets.add(currentSubSet);
+            powerSet.add(currentSubSet);
         }
 
-        return allSubsets;
+        return powerSet;
     }
 }
