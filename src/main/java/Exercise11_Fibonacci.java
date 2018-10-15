@@ -1,11 +1,13 @@
 public class Exercise11_Fibonacci {
     public static void main(String[] args) {
-        for (int i = 0; i < 5; i++) {
-            System.out.println(fibonacci(i));
-        }
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println(fibonacci_iterative(i));
+        int current = 0;
+        int previous;
+        for (int i = 0; i < 100; i++) {
+            previous = current;
+            current = fibonacci_iterative(i);
+            double ratio = (double) previous / current;
+            String format = String.format("|%3d|%20d|%10f|", i, current, ratio);
+            System.out.println(format);
         }
     }
 
