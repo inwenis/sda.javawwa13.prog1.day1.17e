@@ -40,7 +40,7 @@ public class Exercise8p9_Subsets {
         return sb.toString();
     }
 
-    private static List<List<Integer>> getPowerSet(int[] elements) {
+    public static List<List<Integer>> getPowerSet(int[] elements) {
         List<List<Integer>> powerSet = new ArrayList<>();
         double powerSetCount = Math.pow(2, elements.length) - 1;
         for (int i = 1; i <= powerSetCount; i++) {
