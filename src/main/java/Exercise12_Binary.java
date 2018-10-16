@@ -8,7 +8,7 @@ public class Exercise12_Binary {
         System.out.println(toBinary(2147483647));
     }
 
-    private static String toBinary(int number) {
+    public static String toBinary(int number) {
         String result = "";
         for (int i = 0; i < 32; i++) {
             if(number % 2 == 1) {
