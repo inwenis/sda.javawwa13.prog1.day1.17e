@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Exercise16_StringCalculator {
     public static void main(String[] args) {
         System.out.println("Some tests first");
@@ -23,6 +25,43 @@ public class Exercise16_StringCalculator {
         System.out.println(StringCalculator.dim_d("ala", "aaa"));
         System.out.println(StringCalculator.dim_d("ala", "xxx"));
         System.out.println(StringCalculator.dim_d("abcdefg", "defghijkl"));
+
+        System.out.println("----- Now gimme some data and I'll compute the result -----");
+        System.out.println("----- How to quit? q!               -----");
+        System.out.println("----- How to use? ex. aaa + xxx     -----");
+        System.out.println("----- How to use? ex. aaa - xxx     -----");
+        System.out.println("----- How to use? ex. aaa u xxx     -----");
+        System.out.println("----- How to use? ex. aaa u         -----");
+        System.out.println("----- How to use? ex. aaa sub_m abc -----");
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            String result = "";
+            String input = scanner.nextLine();
+            String[] split = input.split(" ");
+
+            if(input.equals("q!")) {
+                // ok
+            } else if (split.length == 2 && split[1].equals("u")) {
+                // ok
+            } else if (split.length == 3) {
+                // ok
+            } else {
+                System.out.println("wrong input");
+                continue;
+            }
+
+            if(input.equals("q!")) { break; }
+            else if(split[1].equals("+")) { result = StringCalculator.add(split[0], split[2]); }
+            else if(split[1].equals("-")) { result = StringCalculator.sub(split[0], split[2]); }
+            else if(split[1].equals("sub_m")) { result = StringCalculator.sub_m(split[0], split[2]); }
+            else if(split[1].equals("u") && split.length == 2) { result = StringCalculator.uniq(split[0]); }
+            else if(split[1].equals("u") && split.length == 3) { result = StringCalculator.inter(split[0], split[2]); }
+            else if(split[1].equals("dim_d")) { result = StringCalculator.dim_d(split[0], split[2]); }
+            else { System.out.println("wrong input"); }
+
+            System.out.println(result);
+        }
+
     }
 
     static class StringCalculator {
