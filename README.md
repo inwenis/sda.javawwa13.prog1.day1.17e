@@ -22,7 +22,7 @@ Silnia to iloczyn liczb naturalnych <=N (mniejsze równe), silnie oznaczamy znak
 5. Napisz program który obliczy średnią liczb podanych na wejściu konsoli.
 6. Napisz program który sprawdzi czy osoba jest pełnoletnia.
     Program powinien wczytać z konsoli datę urodzenia w formacie dd.MM.yyyy i powiedzieć czy osoba jest pełnoletnia czy nie.
-	Jak zamienić String na Date?
+    Jak zamienić String na Date?
 ```
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     Date date = format.parse("2010-10-10");
