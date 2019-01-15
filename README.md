@@ -29,6 +29,9 @@ Silnia to iloczyn liczb naturalnych <=N (mniejsze równe), silnie oznaczamy znak
 ```
 7. Napisz program który wczyta tekst i wypisze go używając wyłącznie wielkich liter.
     1. Zmodyfikuj program tak by po wypisaniu wejściu pozwolił wprowadzić kolejne słowa dopóki użytkownik nie poda "q!"
+    Poniższe punkty wymagają zrozumienia kodowania znaków ASCII
+    2. Java: Napisz program bez użycia `String.toUpperCase()` oraz bez uzycia `Character.toUpperCase()`
+    3. C#: Napisz program bez użycia `string.ToUpper()`, `string.ToUpperInvariant()`, `char.ToUpper()`, `char.ToUpperInvariant()`
 8. Napisz program który jako argument wejściowy (String[] args) przyjmie liczby oddzielone spacjami i następnie:
     1. wypisze wszystkie liczby w kolejności w jakiej zostały podane
     2. wypisze wszystkie liczby od tyłu
